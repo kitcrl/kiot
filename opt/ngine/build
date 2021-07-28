@@ -1,0 +1,10 @@
+#! /bin/bash
+
+################################################################################
+################################################################################
+################################################################################
+CROSS_COMPILE=yes ARCH_TYPE=a32 OUTPUT_TYPE=BINARY ABI=HARD make clean;
+CROSS_COMPILE=yes ARCH_TYPE=a32 OUTPUT_TYPE=BINARY ABI=HARD make dir;
+CROSS_COMPILE=yes ARCH_TYPE=a32 OUTPUT_TYPE=BINARY ABI=HARD make all;
+
+mv out/ngine*.out  ../../out
