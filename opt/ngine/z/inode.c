@@ -32,6 +32,21 @@
 /*****************************************************************************/
 #include <nm.h>
 #include <nwsc.h>
+#include <ntcp.h>
+#include <nhttp.h>
+#include <nhttpd.h>
+
+
+int32_t inode_write(void* h, int32_t fd, int8_t* b, int32_t sz, void* moreinfo, void* o)
+{
+  int32_t e = 0;
+
+  e = nwsc_Write(b, sz);
+  printf("nwsc_Write %08X %s\r\n", e, e>0?"READY":"FAIL");
+
+  return e;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,7 +72,12 @@
 void* setup(void* arg)
 {
   iNode* inode = (iNode*)arg;
+
+  //nhttpd(inode);
+  //nhttp(inode);
   nwsc(inode);
+  ntcp(inode);
+
   return 0;
 }
 
@@ -66,10 +86,8 @@ void* loop(void* arg)
 {
   iNode* inode = (iNode*)arg;
 
-  while (1)
-  {
-    delay(1);
-  }
+  ntcp_Loop(inode);
+  nwsc_Loop(inode);
 
   return 0;
 }

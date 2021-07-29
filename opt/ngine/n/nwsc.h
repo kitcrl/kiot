@@ -28,4 +28,7 @@ void nwsc(iNode* p);
 void nwsc_Loop(iNode* p);
 
 
+int32_t nwsc_Write(uint8_t* b, int32_t sz);
+
+
 #endif

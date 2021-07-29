@@ -28,17 +28,16 @@ __attribute__((packed))
   void* hdl;
   int32_t  argc;
   int8_t** argv;
+  uint8_t  buf[1024];
 } iNode;
 #if defined XWIN32
 #pragma pack()
 #endif
 
-#if defined __cplusplus
-extern "C"
-#endif
-#if defined XWIN32 || defined WINCE
-__declspec(dllexport)
-#endif
-void* nmain();
+
+
+int32_t inode_write(void* h, int32_t fd, int8_t* b, int32_t sz, void* moreinfo, void* o);
+
+
 
 #endif
